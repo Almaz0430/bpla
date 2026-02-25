@@ -1,0 +1,137 @@
+---
+import { Plane } from 'lucide-react';
+---
+
+<header class="header" id="main-header">
+	<div class="container header-container">
+		<a href="/" class="logo">
+			<Plane size={32} className="logo-icon" />
+			<span>KAZ_BPLA</span>
+		</a>
+
+		<nav class="main-nav">
+			<ul class="nav-links">
+				<li><a href="#about">О проекте</a></li>
+				<li><a href="#services">Услуги</a></li>
+				<li><a href="#contacts">Контакты</a></li>
+			</ul>
+		</nav>
+
+		<div class="header-actions">
+			<a href="tel:+77001234567" class="header-phone">+7 (700) 123-45-67</a>
+			<a href="#contacts" class="btn-small">Связаться</a>
+		</div>
+	</div>
+</header>
+
+<script>
+	const header = document.getElementById('main-header');
+	window.addEventListener('scroll', () => {
+		if (window.scrollY > 50) {
+			header?.classList.add('scrolled');
+		} else {
+			header?.classList.remove('scrolled');
+		}
+	});
+</script>
+
+<style>
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding: 25px 0;
+		z-index: 1000;
+		transition: all 0.2s ease;
+		background: rgba(18, 18, 18, 0.5);
+	}
+
+	.header.scrolled {
+		background: var(--bg-color);
+		padding: 15px 0;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.header-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #fff;
+	}
+
+	.logo-icon {
+		color: var(--text-color);
+	}
+
+	.nav-links {
+		display: flex;
+		list-style: none;
+		gap: 30px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav-links a {
+		color: var(--text-muted);
+		font-weight: 500;
+		font-size: 0.95rem;
+		transition: color 0.2s ease;
+	}
+
+	.nav-links a:hover {
+		color: var(--text-color);
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+	}
+
+	.header-phone {
+		color: var(--text-color);
+		font-weight: 500;
+		font-size: 0.9rem;
+		display: none;
+	}
+
+	.btn-small {
+		padding: 10px 25px;
+		background: transparent;
+		color: var(--text-color);
+		border: 1px solid var(--border-color);
+		font-size: 0.85rem;
+		font-weight: 500;
+		transition: all 0.2s ease;
+		border-radius: 4px;
+	}
+
+	.btn-small:hover {
+		background: #ffffff;
+		color: #000000;
+	}
+
+	@media (min-width: 992px) {
+		.header-phone {
+			display: block;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.main-nav {
+			display: none; /* In a real app, you'd add a hamburger menu here */
+		}
+	}
+</style>

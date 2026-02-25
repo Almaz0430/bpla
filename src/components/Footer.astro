@@ -1,0 +1,142 @@
+---
+import { Mail } from 'lucide-react';
+---
+
+<footer class="footer">
+	<div class="container">
+		<div class="footer-top">
+			<div class="brand">
+				<span class="brand-text">KAZ_BPLA</span>
+			</div>
+			<div class="footer-links">
+				<a href="#">Политика конфиденциальности</a>
+				<a href="#">Условия использования</a>
+				<a href="#contacts">Контакты</a>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="copyright">
+				&copy; {new Date().getFullYear()} KAZ_BPLA. Все права защищены.
+			</div>
+			<div class="social-links">
+				<a href="#">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle">
+						<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+					</svg>
+					<span>Whatsapp</span>
+				</a>
+				<a href="#"><Mail size={16} /> <span>Email</span></a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: var(--bg-color); /* Same as contacts section */
+		padding: 60px 0 30px 0;
+		border: none;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	.footer-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 40px;
+		border-bottom: 1px solid #1a1a1a;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.brand-text {
+		color: #e0e0e0;
+		font-family: inherit;
+		font-size: 1.1rem;
+		font-weight: 600;
+		letter-spacing: 1px;
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 30px;
+	}
+
+	.footer-links a {
+		color: #555;
+		font-size: 0.85rem;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.footer-links a:hover {
+		color: #ccc;
+	}
+
+	.footer-bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 30px;
+	}
+
+	.copyright {
+		color: #444;
+		font-size: 0.75rem;
+	}
+
+	.social-links {
+		display: flex;
+		gap: 25px;
+	}
+
+	.social-links a {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		color: #444;
+		font-size: 0.75rem;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.social-links a svg {
+		color: #666;
+		transition: color 0.2s ease;
+	}
+	
+	.social-links a:hover:first-child svg {
+		color: #25D366; /* WhatsApp green on hover */
+	}
+
+	.social-links a:hover {
+		color: #aaa;
+	}
+	
+	.social-links a:hover svg {
+		color: #aaa;
+	}
+
+	@media (max-width: 768px) {
+		.footer-top, .footer-bottom {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 25px;
+		}
+
+		.footer-links, .social-links {
+			flex-wrap: wrap;
+			gap: 15px;
+		}
+	}
+</style>

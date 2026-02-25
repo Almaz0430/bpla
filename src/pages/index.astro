@@ -1,0 +1,573 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } from 'lucide-react';
+---
+
+<Layout>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="video-background">
+			<video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1527891751199-70252b46ce59">
+				<!-- High-quality placeholder video of a drone -->
+				<source src="https://videos.pexels.com/video-files/5826922/5826922-uhd_2560_1440_24fps.mp4" type="video/mp4" />
+				Ваш браузер не поддерживает видео.
+			</video>
+			<div class="overlay"></div>
+		</div>
+
+		<div class="hero-content">
+			<h1>Профессиональные решения БПЛА</h1>
+			<p>Инновационный мониторинг и автоматизация для вашего бизнеса в Казахстане</p>
+			<a href="#about" class="btn">Узнать об услугах</a>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section id="about" class="about-section">
+		<div class="container">
+			<div class="section-header">
+				<span class="section-subtitle">О нас</span>
+				<h2>Инновации. Эффективность. <br/>Точность.</h2>
+			</div>
+			
+			<div class="bento-grid">
+				<div class="bento-item bento-large">
+					<div class="bento-content">
+						<h3>Трансформация через технологии</h3>
+						<p>
+							Мы специализируемся на внедрении и использовании беспилотных летательных аппаратов (БПЛА) по всему Казахстану. 
+							Наша цель — автоматизировать процессы и повысить эффективность в различных секторах экономики от аграрного до промышленного.
+						</p>
+					</div>
+					<div class="bento-image-wrapper">
+						<img src="https://images.unsplash.com/photo-1508614999368-9260051292e5?auto=format&fit=crop&w=800&q=80" alt="Дрон в небе над Казахстаном" />
+					</div>
+				</div>
+
+				<div class="bento-features">
+					<div class="bento-item hover-card">
+						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1579820010410-c10411aaaa88?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-front">
+							<div class="feature-icon-wrapper">
+								<Map size={32} />
+							</div>
+							<h4>Аэрофотосъемка</h4>
+							<p>Создание детализированных карт и высокоточных 3D-моделей местности.</p>
+						</div>
+					</div>
+					
+					<div class="bento-item hover-card">
+						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-front">
+							<div class="feature-icon-wrapper">
+								<Tractor size={32} />
+							</div>
+							<h4>Сельское хозяйство</h4>
+							<p>Комплексный мониторинг посевных площадей и точечное опрыскивание.</p>
+						</div>
+					</div>
+					
+					<div class="bento-item hover-card">
+						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c50ec3?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-front">
+							<div class="feature-icon-wrapper">
+								<Truck size={32} />
+							</div>
+							<h4>Логистика</h4>
+							<p>Организация быстрой, безопасной и надежной доставки специальных грузов.</p>
+						</div>
+					</div>
+					
+					<div class="bento-item hover-card">
+						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1525909002-1a05e0c869d8?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-front">
+							<div class="feature-icon-wrapper">
+								<ShieldCheck size={32} />
+							</div>
+							<h4>Безопасность</h4>
+							<p>Постоянное патрулирование территорий, линий электропередач и периметров.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contacts Section -->
+	<section id="contacts" class="contacts-section">
+		<div class="container contacts-container">
+			<div class="contact-left">
+				<h2>Связаться с нами</h2>
+				<p class="contact-desc">Обсудим ваш проект? Оставьте заявку или свяжитесь с нами напрямую для получения консультации.</p>
+				
+				<ul class="contact-list">
+					<li>
+						<Mail size={16} className="contact-icon" />
+						<a href="mailto:info@uav-kz.kz">info@uav-kz.kz</a>
+					</li>
+					<li>
+						<MapPin size={16} className="contact-icon" />
+						<span>Астана, Казахстан</span>
+					</li>
+					<li>
+						<Phone size={16} className="contact-icon" />
+						<a href="tel:+77001234567">+7 (700) 123 45-67</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="contact-right">
+				<form class="contact-form">
+					<div class="form-group">
+						<label for="name">Ваше имя</label>
+						<input type="text" id="name" name="name" placeholder="Как к вам обращаться" />
+					</div>
+					<div class="form-group">
+						<label for="email">E-mail</label>
+						<input type="email" id="email" name="email" placeholder="example@mail.kz" />
+					</div>
+					<div class="form-group">
+						<label for="details">Описание проекта</label>
+						<textarea id="details" name="details" rows="1" placeholder="Расскажите о ваших задачах"></textarea>
+					</div>
+					<button type="submit" class="submit-btn">Отправить заявку &nbsp;&rarr;</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	/* Hero Section */
+	.hero {
+		position: relative;
+		height: 100vh;
+		min-height: 600px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		text-align: center;
+	}
+
+	.video-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+
+	.video-background video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(18, 18, 18, 0.8); /* Dark overlay */
+		z-index: 2;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 3;
+		max-width: 800px;
+		padding: 0 20px;
+		animation: fadeIn 1.5s ease-out;
+	}
+
+	.hero-content h1 {
+		font-size: 3.5rem;
+		font-weight: 600;
+		margin-bottom: 20px;
+		letter-spacing: -0.5px;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
+
+	.hero-content p {
+		font-size: 1.2rem;
+		font-weight: 300;
+		margin-bottom: 40px;
+		color: #e0e0e0;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 15px 40px;
+		background: transparent;
+		color: var(--text-color);
+		font-weight: 500;
+		font-size: 1rem;
+		border-radius: 4px;
+		border: 1px solid var(--border-color);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		transition: all 0.2s ease;
+	}
+
+	.btn:hover {
+		background: #ffffff;
+		color: #000000;
+	}
+
+	/* Sections General */
+	section {
+		padding: 100px 0;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	.container-sm {
+		max-width: 900px;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	/* Section Headers */
+	.section-header {
+		margin-bottom: 60px;
+	}
+
+	.section-header.text-center {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.section-subtitle {
+		display: inline-block;
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		color: var(--text-muted);
+		margin-bottom: 15px;
+		border: 1px solid var(--border-color);
+		padding: 6px 16px;
+		border-radius: 30px;
+	}
+
+	h2 {
+		font-size: 3rem;
+		font-weight: 500;
+		line-height: 1.1;
+		margin: 0;
+		letter-spacing: -1px;
+	}
+
+	.section-desc {
+		font-size: 1.1rem;
+		color: var(--text-muted);
+		margin-top: 20px;
+		max-width: 600px;
+		line-height: 1.6;
+	}
+
+	/* About Section (Bento Grid) */
+	.about-section {
+		background: var(--bg-secondary);
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.bento-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+
+	.bento-features {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+
+	.bento-item {
+		background: var(--bg-color);
+		border: 1px solid var(--border-color);
+		padding: 40px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	.bento-item.hover-card {
+		background: transparent; /* Changed to allow bg to show through */
+	}
+
+	.bento-large {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 40px;
+		padding: 0;
+		overflow: hidden;
+		align-items: center;
+	}
+
+	.bento-content {
+		padding: 50px;
+	}
+
+	.bento-content h3 {
+		font-size: 2rem;
+		font-weight: 500;
+		margin-bottom: 20px;
+		color: var(--text-color);
+		letter-spacing: -0.5px;
+	}
+
+	.bento-content p {
+		font-size: 1.1rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.bento-image-wrapper {
+		height: 100%;
+		min-height: 400px;
+	}
+
+	.bento-image-wrapper img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		filter: grayscale(80%);
+		transition: filter 0.4s ease;
+	}
+
+	.bento-item:hover .bento-image-wrapper img {
+		filter: grayscale(0%);
+	}
+
+	.hover-card {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.card-bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		opacity: 0;
+		transition: opacity 0.4s ease, transform 0.4s ease;
+		z-index: 1;
+		filter: grayscale(80%) brightness(0.3);
+	}
+
+	.hover-card:hover .card-bg {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+
+	.card-front {
+		position: relative;
+		z-index: 2;
+		transition: transform 0.4s ease;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.hover-card:hover .card-front {
+		transform: translateY(-5px);
+	}
+
+	.feature-icon-wrapper {
+		color: var(--text-color);
+		margin-bottom: 25px;
+	}
+
+	.bento-item h4 {
+		font-size: 1.25rem;
+		font-weight: 500;
+		margin-bottom: 15px;
+		color: var(--text-color);
+	}
+
+	.bento-item p {
+		color: var(--text-muted);
+		line-height: 1.6;
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.bento-item.hover-card::before {
+		content: '';
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		background: var(--bg-color);
+		z-index: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.bento-item.hover-card:hover::before {
+		opacity: 0.2; /* Allows image to show when hovered */
+	}
+
+	/* Contacts Section */
+	.contacts-section {
+		background: var(--bg-color);
+		padding: 120px 0;
+	}
+
+	.contacts-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 80px;
+		align-items: flex-start;
+	}
+
+	.contact-left h2 {
+		font-size: 2.2rem;
+		font-weight: 500;
+		letter-spacing: -0.5px;
+		margin-bottom: 25px;
+		color: #ffffff;
+	}
+
+	.contact-left h2::after {
+		display: none;
+	}
+
+	.contact-desc {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		margin-bottom: 40px;
+		line-height: 1.6;
+		max-width: 400px;
+	}
+
+	.contact-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.contact-list li {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		margin-bottom: 20px;
+		color: #a0a0a0;
+		font-size: 0.9rem;
+	}
+
+	.contact-icon {
+		color: #666;
+	}
+
+	.contact-list a {
+		color: #a0a0a0;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.contact-list a:hover {
+		color: #ffffff;
+	}
+
+	/* Form */
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.form-group label {
+		font-size: 0.85rem;
+		color: #888;
+		margin-bottom: 8px;
+		font-weight: 500;
+	}
+
+	.form-group input,
+	.form-group textarea {
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid #222;
+		padding: 10px 0;
+		color: #fff;
+		font-family: inherit;
+		font-size: 1rem;
+		outline: none;
+		transition: border-color 0.3s ease;
+		resize: none;
+	}
+
+	.form-group textarea {
+		min-height: 40px;
+	}
+
+	.form-group input:focus,
+	.form-group textarea:focus {
+		border-bottom-color: #666;
+	}
+
+	.submit-btn {
+		background: #ffffff;
+		border: none;
+		color: #000000;
+		font-family: inherit;
+		font-size: 0.95rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 12px 30px;
+		border-radius: 4px;
+		margin-top: 20px;
+		transition: background-color 0.2s ease;
+	}
+
+	.submit-btn:hover {
+		background: #cccccc;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(20px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	/* Responsive */
+	@media (max-width: 992px) {
+		.bento-large {
+			grid-template-columns: 1fr;
+		}
+		.bento-image-wrapper {
+			min-height: 300px;
+		}
+		h2 {
+			font-size: 2.5rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.contacts-container {
+			grid-template-columns: 1fr;
+			gap: 50px;
+		}
+</style>
