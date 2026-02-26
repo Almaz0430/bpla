@@ -7,10 +7,10 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 	<!-- Hero Section -->
 	<section class="hero">
 		<div class="video-background">
-			<video id="video-1" class="hero-video active" autoplay muted playsinline poster="https://images.unsplash.com/photo-1527891751199-70252b46ce59">
+			<video id="video-1" class="hero-video active" autoplay muted playsinline preload="auto" poster="https://images.unsplash.com/photo-1527891751199-70252b46ce59">
 				<source src="/hero/video-1.mp4" type="video/mp4" />
 			</video>
-			<video id="video-2" class="hero-video" muted playsinline></video>
+			<video id="video-2" class="hero-video" muted playsinline preload="none"></video>
 			<audio id="bg-audio" loop autoplay>
 				<source src="/hero/sound.mp3" type="audio/mpeg" />
 			</audio>
@@ -100,10 +100,28 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 			
 			<div class="bento-grid">
 				<div class="bento-item bento-large">
-					<div class="dual-images">
-						<img src="/photo/image_5.jpeg" alt="Защита объектов 2" />
-						<img src="/photo/image_4.jpeg" alt="Защита объектов 1" />
+					<div class="dual-images" id="dual-images-slider">
+						<img src="/photo/image_5.jpeg" alt="Защита объектов 2" loading="lazy" decoding="async" />
+						<img src="/photo/image_4.jpeg" alt="Защита объектов 1" loading="lazy" decoding="async" />
 					</div>
+					<script>
+						(function() {
+							const slider = document.getElementById('dual-images-slider');
+							if (!slider) return;
+							let scrolling = true;
+							setInterval(() => {
+								if (!scrolling) return;
+								const maxScroll = slider.scrollWidth - slider.clientWidth;
+								if (slider.scrollLeft >= maxScroll - 2) {
+									slider.scrollTo({ left: 0, behavior: 'smooth' });
+								} else {
+									slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+								}
+							}, 3000);
+							slider.addEventListener('touchstart', () => { scrolling = false; });
+							slider.addEventListener('touchend', () => { setTimeout(() => { scrolling = true; }, 3000); });
+						})();
+					</script>
 				</div>
 
 				<div class="bento-features">
@@ -405,13 +423,24 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 		display: flex;
 		gap: 0;
 		width: 100%;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.dual-images::-webkit-scrollbar {
+		display: none;
 	}
 
 	.dual-images img {
 		width: 50%;
+		min-width: 50%;
 		height: 400px;
 		object-fit: cover;
 		display: block;
+		scroll-snap-align: start;
+		flex-shrink: 0;
 	}
 
 	.bento-content {
@@ -711,6 +740,16 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 			gap: 50px;
 		}
 
+		.dual-images img {
+			width: 100%;
+			min-width: 100%;
+			height: 280px;
+		}
+
+		.bento-large {
+			min-height: 280px;
+			padding: 0;
+		}
 
 	}
 
