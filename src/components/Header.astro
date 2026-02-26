@@ -16,10 +16,13 @@ import { Menu, X } from 'lucide-react';
 			</ul>
 		</nav>
 
-		<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню">
-			<Menu size={32} className="icon-menu" />
-			<X size={32} className="icon-close" />
-		</button>
+		<div class="header-right">
+			<img src="/logo_2.png" alt="Secondary Logo" class="logo-image secondary-logo" />
+			<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню">
+				<Menu size={32} className="icon-menu" />
+				<X size={32} className="icon-close" />
+			</button>
+		</div>
 	</div>
 
 	<div class="mobile-nav" id="mobile-nav">
@@ -82,7 +85,6 @@ import { Menu, X } from 'lucide-react';
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
 		padding: 10px 0;
-		border-bottom: 1px solid rgba(255,255,255,0.05);
 	}
 
 	.header-container {
@@ -104,10 +106,20 @@ import { Menu, X } from 'lucide-react';
 	}
 
 	.logo-image {
-		height: 90px;
+		height: 80px;
 		width: auto;
 		display: block;
 		transition: all 0.3s ease;
+	}
+
+	.secondary-logo {
+		height: 60px;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		gap: 20px;
 	}
 
 	.nav-links {
@@ -218,14 +230,27 @@ import { Menu, X } from 'lucide-react';
 			display: block;
 		}
 
+	@media (max-width: 992px) {
+		.main-nav {
+			display: none;
+		}
+
+		.mobile-menu-btn {
+			display: block;
+		}
+
 		.logo-image {
-			height: 70px;
+			height: 60px;
+		}
+		
+		.secondary-logo {
+			display: none;
 		}
 	}
 
 	@media (max-width: 480px) {
 		.logo-image {
-			height: 60px;
+			height: 50px;
 		}
 	}
 </style>

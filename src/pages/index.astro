@@ -18,7 +18,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 		</div>
 
 		<div class="hero-content">
-			<h1>Противодействие БПЛА</h1>
+			<h1>Противодействие для БПЛА</h1>
 			<p class="hero-desc">Комплексная система мониторинга, обнаружения, подавления и противодействия несанкционированным беспилотным летательным аппаратам (БПЛА).</p>
 		</div>
 		<a href="#about" class="scroll-arrow" aria-label="Прокрутить вниз">
@@ -32,7 +32,8 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 				"/hero/video-3.mp4",
 				"/hero/video-4.mp4",
 				"/hero/video-5.mp4",
-				"/hero/video-6.mp4"
+				"/hero/video-6.mp4",
+				"/hero/video-7.mp4"
 			];
 			let currentIndex = 0;
 			const v1 = document.getElementById('video-1') as HTMLVideoElement;
@@ -99,21 +100,15 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 			
 			<div class="bento-grid">
 				<div class="bento-item bento-large">
-					<div class="bento-content">
-						<h3>Защита критической инфраструктуры</h3>
-						<p>
-							Защита зданий, сооружений, объектов городской и промышленной инфраструктуры. 
-							Обнаружение, подавление каналов управления и кинетическое устранение дронов-нарушителей.
-						</p>
-					</div>
-					<div class="bento-image-wrapper">
-						<img src="/photo/image_4.jpeg" alt="Защита критической инфраструктуры" />
+					<div class="dual-images">
+						<img src="/photo/image_5.jpeg" alt="Защита объектов 2" />
+						<img src="/photo/image_4.jpeg" alt="Защита объектов 1" />
 					</div>
 				</div>
 
 				<div class="bento-features">
 					<div class="bento-item hover-card">
-						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1579820010410-c10411aaaa88?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-bg" style="background-image: url('/photo/card_1.jpeg');"></div>
 						<div class="card-front">
 							<div class="feature-icon-wrapper">
 								<ShieldCheck size={32} />
@@ -124,7 +119,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 					</div>
 					
 					<div class="bento-item hover-card">
-						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-bg" style="background-image: url('/photo/card_2.png');"></div>
 						<div class="card-front">
 							<div class="feature-icon-wrapper">
 								<Tractor size={32} />
@@ -135,7 +130,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 					</div>
 					
 					<div class="bento-item hover-card">
-						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c50ec3?auto=format&fit=crop&w=600&q=80');"></div>
+						<div class="card-bg" style="background-image: url('/photo/card_3.png');"></div>
 						<div class="card-front">
 							<div class="feature-icon-wrapper">
 								<Truck size={32} />
@@ -160,37 +155,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 		</div>
 	</section>
 
-	<!-- Objects Section -->
-	<section id="objects" class="objects-section">
-		<div class="container">
-			<div class="section-header text-center">
-				<h2>Надежная охрана инфраструктуры</h2>
-				<p class="section-desc">Промышленная и городская инфраструктура под постоянным мониторингом и защитой нашей системы.</p>
-			</div>
-		</div>
-		
-		<div class="carousel-container">
-			<div class="carousel-track" id="carousel-track">
-				{[1, 2, 3, 4, 5, 6, 7].map((i) => (
-					<div class="carousel-item">
-						<img src={`/objects/object_${i}.png`} alt={`Объект защиты ${i}`} loading="lazy" />
-						<div class="item-overlay">
-							<span>Объект #{i}</span>
-						</div>
-					</div>
-				))}
-				<!-- Duplicate for infinite effect -->
-				{[1, 2, 3, 4, 5, 6, 7].map((i) => (
-					<div class="carousel-item" aria-hidden="true">
-						<img src={`/objects/object_${i}.png`} alt="" loading="lazy" />
-						<div class="item-overlay">
-							<span>Объект #{i}</span>
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+
 
 	<!-- Contacts Section -->
 	<section id="contacts" class="contacts-section">
@@ -429,12 +394,24 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 	}
 
 	.bento-large {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 40px;
 		padding: 0;
-		overflow: hidden;
-		align-items: center;
+		background: var(--bg-secondary);
+		display: flex;
+		align-items: stretch;
+		min-height: 400px;
+	}
+
+	.dual-images {
+		display: flex;
+		gap: 0;
+		width: 100%;
+	}
+
+	.dual-images img {
+		width: 50%;
+		height: 400px;
+		object-fit: cover;
+		display: block;
 	}
 
 	.bento-content {
@@ -494,7 +471,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 		opacity: 0;
 		transition: opacity 0.4s ease, transform 0.4s ease;
 		z-index: 1;
-		filter: grayscale(80%) brightness(0.3);
+		filter: grayscale(30%) brightness(0.6);
 	}
 
 	.hover-card:hover .card-bg {
@@ -544,97 +521,19 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 	}
 
 	.bento-item.hover-card:hover::before {
-		opacity: 0.2; /* Allows image to show when hovered */
+		opacity: 0.5;
 	}
 
-	/* Objects Section & Carousel */
-	.objects-section {
-		background: #ffffff;
-		padding: 120px 0;
-		overflow: hidden;
+	.hover-card:hover .card-front h4,
+	.hover-card:hover .card-front p {
+		color: #ffffff;
 	}
 
-	.objects-section h2 {
-		color: #000000;
-	}
 
-	.objects-section .section-desc {
-		color: var(--text-muted);
-	}
-
-	.objects-section .section-subtitle {
-		color: var(--text-muted);
-		border-color: var(--border-color);
-	}
-
-	.carousel-container {
-		margin-top: 60px;
-		width: 100%;
-		position: relative;
-	}
-
-	.carousel-track {
-		display: flex;
-		gap: 60px;
-		width: max-content;
-		animation: scroll 40s linear infinite;
-	}
-
-	.carousel-track:hover {
-		animation-play-state: paused;
-	}
-
-	.carousel-item {
-		position: relative;
-		width: 600px;
-		height: 600px;
-		flex-shrink: 0;
-		overflow: hidden;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.carousel-item img {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-		filter: grayscale(100%);
-		transition: transform 0.6s ease, filter 0.6s ease;
-	}
-
-	.item-overlay {
-		position: absolute;
-		bottom: 20px;
-		left: 50%;
-		transform: translateX(-50%);
-		padding: 10px 20px;
-		background: rgba(0,0,0,0.5);
-		backdrop-filter: blur(4px);
-		border-radius: 20px;
-		color: #fff;
-		opacity: 0;
-		transition: opacity 0.4s ease;
-		white-space: nowrap;
-	}
-
-	.carousel-item:hover img {
-		filter: grayscale(0%);
-		transform: scale(1.05);
-	}
-
-	.carousel-item:hover .item-overlay {
-		opacity: 1;
-	}
-
-	@keyframes scroll {
-		0% { transform: translateX(0); }
-		100% { transform: translateX(calc(-50% - 10px)); }
-	}
 
 	/* Contacts Section */
 	.contacts-section {
-		background: var(--bg-color);
+		background: #ffffff;
 		padding: 120px 0;
 	}
 
@@ -650,7 +549,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 		font-weight: 500;
 		letter-spacing: -0.5px;
 		margin-bottom: 25px;
-		color: #ffffff;
+		color: #000000;
 	}
 
 	.contact-left h2::after {
@@ -658,7 +557,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 	}
 
 	.contact-desc {
-		color: var(--text-muted);
+		color: #555;
 		font-size: 0.95rem;
 		margin-bottom: 40px;
 		line-height: 1.6;
@@ -676,22 +575,22 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 		align-items: center;
 		gap: 15px;
 		margin-bottom: 20px;
-		color: #a0a0a0;
+		color: #444;
 		font-size: 0.9rem;
 	}
 
 	.contact-icon {
-		color: #666;
+		color: #555;
 	}
 
 	.contact-list a {
-		color: #a0a0a0;
+		color: #444;
 		text-decoration: none;
 		transition: color 0.2s ease;
 	}
 
 	.contact-list a:hover {
-		color: #ffffff;
+		color: #000000;
 	}
 
 	/* Form */
@@ -708,7 +607,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 
 	.form-group label {
 		font-size: 0.85rem;
-		color: #888;
+		color: #666;
 		margin-bottom: 8px;
 		font-weight: 500;
 	}
@@ -717,9 +616,9 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 	.form-group textarea {
 		background: transparent;
 		border: none;
-		border-bottom: 1px solid #222;
+		border-bottom: 1px solid #ccc;
 		padding: 10px 0;
-		color: #fff;
+		color: #000;
 		font-family: inherit;
 		font-size: 1rem;
 		outline: none;
@@ -733,13 +632,13 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 
 	.form-group input:focus,
 	.form-group textarea:focus {
-		border-bottom-color: #666;
+		border-bottom-color: #999;
 	}
 
 	.submit-btn {
-		background: #ffffff;
+		background: #000000;
 		border: none;
-		color: #000000;
+		color: #ffffff;
 		font-family: inherit;
 		font-size: 0.95rem;
 		font-weight: 600;
@@ -753,7 +652,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 	}
 
 	.submit-btn:hover {
-		background: #cccccc;
+		background: #333;
 	}
 
 	@keyframes fadeIn {
@@ -812,18 +711,7 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, Ch
 			gap: 50px;
 		}
 
-		.objects-section {
-			padding: 80px 0;
-		}
 
-		.carousel-item {
-			width: 300px;
-			height: 300px;
-		}
-		
-		.carousel-track {
-			gap: 30px;
-		}
 	}
 
 	@media (max-width: 480px) {
