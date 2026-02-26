@@ -1,5 +1,5 @@
 ---
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from "lucide-react";
 ---
 
 <header class="header" id="main-header">
@@ -8,17 +8,17 @@ import { Menu, X } from 'lucide-react';
 			<img src="/logo.png" alt="UAV-KZ Logo" class="logo-image" />
 		</a>
 
-		<nav class="main-nav">
-			<ul class="nav-links">
-				<li><a href="#about">О проекте</a></li>
-				<li><a href="#about">Услуги</a></li>
-				<li><a href="#contacts">Связаться</a></li>
-			</ul>
-		</nav>
-
 		<div class="header-right">
-			<img src="/logo_2.png" alt="Secondary Logo" class="logo-image secondary-logo" />
-			<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню">
+			<img
+				src="/logo_2.png"
+				alt="Secondary Logo"
+				class="logo-image secondary-logo"
+			/>
+			<button
+				class="mobile-menu-btn"
+				id="mobile-menu-btn"
+				aria-label="Открыть меню"
+			>
 				<Menu size={32} className="icon-menu" />
 				<X size={32} className="icon-close" />
 			</button>
@@ -35,36 +35,24 @@ import { Menu, X } from 'lucide-react';
 </header>
 
 <script>
-	const header = document.getElementById('main-header');
-	const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-	const mobileNav = document.getElementById('mobile-nav');
-	const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+	const header = document.getElementById("main-header");
+	const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+	const mobileNav = document.getElementById("mobile-nav");
+	const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
 
 	// Scroll handler
-	window.addEventListener('scroll', () => {
+	window.addEventListener("scroll", () => {
 		if (window.scrollY > 80) {
-			header?.classList.add('scrolled');
+			header?.classList.add("scrolled");
 		} else {
-			header?.classList.remove('scrolled');
+			header?.classList.remove("scrolled");
 		}
 	});
 
-	// Mobile menu toggle
-	const toggleMenu = () => {
-		const isOpen = mobileMenuBtn?.classList.toggle('active');
-		mobileNav?.classList.toggle('active');
-		document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-	};
-
-	mobileMenuBtn?.addEventListener('click', toggleMenu);
-
-	// Close menu on link click
-	mobileLinks.forEach(link => {
-		link.addEventListener('click', () => {
-			mobileMenuBtn?.classList.remove('active');
-			mobileNav?.classList.remove('active');
-			document.body.style.overflow = 'auto';
-		});
+	// Mobile menu is intentionally disabled to act as a "scam" button
+	// Clicking it does nothing here, but triggers document click to start audio
+	mobileMenuBtn?.addEventListener("click", (e) => {
+		// Just a visual click, no action
 	});
 </script>
 
@@ -106,43 +94,20 @@ import { Menu, X } from 'lucide-react';
 	}
 
 	.logo-image {
-		height: 80px;
+		height: 130px;
 		width: auto;
 		display: block;
 		transition: all 0.3s ease;
 	}
 
 	.secondary-logo {
-		height: 60px;
+		height: 90px;
 	}
 
 	.header-right {
 		display: flex;
 		align-items: center;
 		gap: 20px;
-	}
-
-	.nav-links {
-		display: flex;
-		list-style: none;
-		gap: 36px;
-		margin: 0;
-		padding: 0;
-	}
-
-	.nav-links a {
-		color: rgba(255, 255, 255, 0.85);
-		font-weight: 500;
-		font-size: 0.95rem;
-		text-decoration: none;
-		letter-spacing: 0.5px;
-		text-transform: uppercase;
-		font-family: 'Russo One', sans-serif;
-		transition: color 0.3s ease;
-	}
-
-	.nav-links a:hover {
-		color: #ffffff;
 	}
 
 	/* Mobile Menu Button */
@@ -155,8 +120,6 @@ import { Menu, X } from 'lucide-react';
 		padding: 5px;
 		transition: color 0.3s ease;
 	}
-
-
 
 	.mobile-menu-btn .icon-close {
 		display: none;
@@ -215,26 +178,13 @@ import { Menu, X } from 'lucide-react';
 	.mobile-nav-links a {
 		color: #ffffff;
 		font-size: 2rem;
-		font-family: 'Russo One', sans-serif;
+		font-family: "Russo One", sans-serif;
 		text-transform: uppercase;
 		text-decoration: none;
 		letter-spacing: 2px;
 	}
 
 	@media (max-width: 992px) {
-		.main-nav {
-			display: none;
-		}
-
-		.mobile-menu-btn {
-			display: block;
-		}
-
-	@media (max-width: 992px) {
-		.main-nav {
-			display: none;
-		}
-
 		.mobile-menu-btn {
 			display: block;
 		}
@@ -242,7 +192,7 @@ import { Menu, X } from 'lucide-react';
 		.logo-image {
 			height: 60px;
 		}
-		
+
 		.secondary-logo {
 			display: none;
 		}
