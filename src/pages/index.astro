@@ -1,46 +1,113 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight, ChevronsDown } from 'lucide-react';
 ---
 
 <Layout>
 	<!-- Hero Section -->
 	<section class="hero">
 		<div class="video-background">
-			<video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1527891751199-70252b46ce59">
-				<!-- High-quality placeholder video of a drone -->
-				<source src="https://videos.pexels.com/video-files/5826922/5826922-uhd_2560_1440_24fps.mp4" type="video/mp4" />
-				Ваш браузер не поддерживает видео.
+			<video id="video-1" class="hero-video active" autoplay muted playsinline poster="https://images.unsplash.com/photo-1527891751199-70252b46ce59">
+				<source src="/hero/video-1.mp4" type="video/mp4" />
 			</video>
+			<video id="video-2" class="hero-video" muted playsinline></video>
+			<audio id="bg-audio" loop autoplay>
+				<source src="/hero/sound.mp3" type="audio/mpeg" />
+			</audio>
 			<div class="overlay"></div>
 		</div>
 
 		<div class="hero-content">
-			<h1>Профессиональные решения БПЛА</h1>
-			<p>Инновационный мониторинг и автоматизация для вашего бизнеса в Казахстане</p>
-			<a href="#about" class="btn">Узнать об услугах</a>
+			<h1>Противодействие БПЛА</h1>
+			<p class="hero-desc">Комплексная система мониторинга, обнаружения, подавления и противодействия несанкционированным беспилотным летательным аппаратам (БПЛА).</p>
 		</div>
+		<a href="#about" class="scroll-arrow" aria-label="Прокрутить вниз">
+			<ChevronsDown size={40} strokeWidth={1.5} />
+		</a>
+
+		<script>
+			const videoUrls = [
+				"/hero/video-1.mp4",
+				"/hero/video-2.mp4",
+				"/hero/video-3.mp4",
+				"/hero/video-4.mp4",
+				"/hero/video-5.mp4",
+				"/hero/video-6.mp4"
+			];
+			let currentIndex = 0;
+			const v1 = document.getElementById('video-1') as HTMLVideoElement;
+			const v2 = document.getElementById('video-2') as HTMLVideoElement;
+			const players = [v1, v2];
+			let activePlayerIndex = 0;
+			const audio = document.getElementById('bg-audio') as HTMLAudioElement;
+
+			const transition = () => {
+				const nextIndex = (currentIndex + 1) % videoUrls.length;
+				const nextPlayerIndex = (activePlayerIndex + 1) % 2;
+				
+				const currentPlayer = players[activePlayerIndex];
+				const nextPlayer = players[nextPlayerIndex];
+
+				// Pre-set source and play the next video hidden
+				nextPlayer.src = videoUrls[nextIndex];
+				nextPlayer.play();
+				
+				// Smooth fade
+				nextPlayer.classList.add('active');
+				currentPlayer.classList.remove('active');
+
+				currentIndex = nextIndex;
+				activePlayerIndex = nextPlayerIndex;
+				
+				// Re-attach time listener to the new current player
+				nextPlayer.addEventListener('timeupdate', checkTime, { once: true });
+			};
+
+			const checkTime = (e: Event) => {
+				const player = e.target as HTMLVideoElement;
+				// Start transition 1.5s before current video ends
+				if (player.duration > 0 && player.duration - player.currentTime < 1.5) {
+					transition();
+				} else {
+					player.addEventListener('timeupdate', checkTime, { once: true });
+				}
+			};
+
+			// Initialize
+			v1.addEventListener('timeupdate', checkTime, { once: true });
+
+			// Audio handling: try immediate play, fallback to interaction if blocked
+			const startAudio = () => {
+				if (audio) {
+					audio.play().catch(e => {
+						console.log("Autoplay blocked, waiting for interaction");
+						document.addEventListener('click', () => audio.play(), { once: true });
+						document.addEventListener('touchstart', () => audio.play(), { once: true });
+					});
+				}
+			};
+			startAudio();
+		</script>
 	</section>
 
 	<!-- About Section -->
 	<section id="about" class="about-section">
 		<div class="container">
 			<div class="section-header">
-				<span class="section-subtitle">О нас</span>
-				<h2>Инновации. Эффективность. <br/>Точность.</h2>
+				<h2>Системы противодействия</h2>
 			</div>
 			
 			<div class="bento-grid">
 				<div class="bento-item bento-large">
 					<div class="bento-content">
-						<h3>Трансформация через технологии</h3>
+						<h3>Защита критической инфраструктуры</h3>
 						<p>
-							Мы специализируемся на внедрении и использовании беспилотных летательных аппаратов (БПЛА) по всему Казахстану. 
-							Наша цель — автоматизировать процессы и повысить эффективность в различных секторах экономики от аграрного до промышленного.
+							Защита зданий, сооружений, объектов городской и промышленной инфраструктуры. 
+							Обнаружение, подавление каналов управления и кинетическое устранение дронов-нарушителей.
 						</p>
 					</div>
 					<div class="bento-image-wrapper">
-						<img src="https://images.unsplash.com/photo-1508614999368-9260051292e5?auto=format&fit=crop&w=800&q=80" alt="Дрон в небе над Казахстаном" />
+						<img src="/photo/image_4.jpeg" alt="Защита критической инфраструктуры" />
 					</div>
 				</div>
 
@@ -49,10 +116,10 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1579820010410-c10411aaaa88?auto=format&fit=crop&w=600&q=80');"></div>
 						<div class="card-front">
 							<div class="feature-icon-wrapper">
-								<Map size={32} />
+								<ShieldCheck size={32} />
 							</div>
-							<h4>Аэрофотосъемка</h4>
-							<p>Создание детализированных карт и высокоточных 3D-моделей местности.</p>
+							<h4>Обнаружение</h4>
+							<p>Высокоточное сканирование частот и визуальное отслеживание несанкционированных целей в режиме реального времени.</p>
 						</div>
 					</div>
 					
@@ -62,8 +129,8 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 							<div class="feature-icon-wrapper">
 								<Tractor size={32} />
 							</div>
-							<h4>Сельское хозяйство</h4>
-							<p>Комплексный мониторинг посевных площадей и точечное опрыскивание.</p>
+							<h4>Подавление</h4>
+							<p>Блокировка каналов управления и навигации (GNSS) для принудительной посадки или возврата дрона.</p>
 						</div>
 					</div>
 					
@@ -73,8 +140,8 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 							<div class="feature-icon-wrapper">
 								<Truck size={32} />
 							</div>
-							<h4>Логистика</h4>
-							<p>Организация быстрой, безопасной и надежной доставки специальных грузов.</p>
+							<h4>Кинетическое устранение</h4>
+							<p>Физическая нейтрализация угроз в случае невозможности радиоэлектронного подавления.</p>
 						</div>
 					</div>
 					
@@ -82,13 +149,45 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 						<div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1525909002-1a05e0c869d8?auto=format&fit=crop&w=600&q=80');"></div>
 						<div class="card-front">
 							<div class="feature-icon-wrapper">
-								<ShieldCheck size={32} />
+								<Map size={32} />
 							</div>
-							<h4>Безопасность</h4>
-							<p>Постоянное патрулирование территорий, линий электропередач и периметров.</p>
+							<h4>Защита объектов</h4>
+							<p>Создание бесполетных зон над важными промышленными и государственными объектами Казахстана.</p>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Objects Section -->
+	<section id="objects" class="objects-section">
+		<div class="container">
+			<div class="section-header text-center">
+				<h2>Надежная охрана инфраструктуры</h2>
+				<p class="section-desc">Промышленная и городская инфраструктура под постоянным мониторингом и защитой нашей системы.</p>
+			</div>
+		</div>
+		
+		<div class="carousel-container">
+			<div class="carousel-track" id="carousel-track">
+				{[1, 2, 3, 4, 5, 6, 7].map((i) => (
+					<div class="carousel-item">
+						<img src={`/objects/object_${i}.png`} alt={`Объект защиты ${i}`} loading="lazy" />
+						<div class="item-overlay">
+							<span>Объект #{i}</span>
+						</div>
+					</div>
+				))}
+				<!-- Duplicate for infinite effect -->
+				{[1, 2, 3, 4, 5, 6, 7].map((i) => (
+					<div class="carousel-item" aria-hidden="true">
+						<img src={`/objects/object_${i}.png`} alt="" loading="lazy" />
+						<div class="item-overlay">
+							<span>Объект #{i}</span>
+						</div>
+					</div>
+				))}
 			</div>
 		</div>
 	</section>
@@ -157,12 +256,22 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 		width: 100%;
 		height: 100%;
 		z-index: 1;
+		background: #000;
 	}
 
-	.video-background video {
+	.hero-video {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		opacity: 0;
+		transition: opacity 1.5s ease-in-out;
+	}
+
+	.hero-video.active {
+		opacity: 1;
 	}
 
 	.overlay {
@@ -178,44 +287,55 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 	.hero-content {
 		position: relative;
 		z-index: 3;
-		max-width: 800px;
+		max-width: 900px;
 		padding: 0 20px;
 		animation: fadeIn 1.5s ease-out;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.hero-eyebrow {
+		font-size: 0.85rem;
+		font-weight: 400;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255,255,255,0.6);
+		margin-bottom: 8px;
 	}
 
 	.hero-content h1 {
-		font-size: 3.5rem;
-		font-weight: 600;
+		font-family: 'Russo One', sans-serif;
+		font-size: clamp(3rem, 7vw, 6rem);
+		font-weight: 400;
 		margin-bottom: 20px;
-		letter-spacing: -0.5px;
-		text-transform: uppercase;
+		letter-spacing: 0.5px;
 		color: #ffffff;
-	}
-
-	.hero-content p {
-		font-size: 1.2rem;
-		font-weight: 300;
-		margin-bottom: 40px;
-		color: #e0e0e0;
-	}
-
-	.btn {
-		display: inline-block;
-		padding: 15px 40px;
-		background: transparent;
-		color: var(--text-color);
-		font-weight: 500;
-		font-size: 1rem;
-		border-radius: 4px;
-		border: 1px solid var(--border-color);
+		line-height: 1.1;
 		text-transform: uppercase;
-		letter-spacing: 1px;
-		transition: all 0.2s ease;
 	}
 
-	.btn:hover {
-		background: #ffffff;
-		color: #000000;
+	.hero-desc {
+		font-size: 1.1rem;
+		font-weight: 300;
+		color: rgba(255,255,255,0.7);
+		max-width: 700px;
+		line-height: 1.6;
+	}
+
+	.scroll-arrow {
+		position: absolute;
+		bottom: 40px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 3;
+		color: rgba(255, 255, 255, 0.7);
+		transition: color 0.2s ease;
+		display: block;
+	}
+
+	.scroll-arrow:hover {
+		color: #ffffff;
 	}
 
 	/* Sections General */
@@ -286,13 +406,13 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 	.bento-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 20px;
+		gap: 0;
 	}
 
 	.bento-features {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 20px;
+		gap: 0;
 	}
 
 	.bento-item {
@@ -348,6 +468,10 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 		display: block;
 		filter: grayscale(80%);
 		transition: filter 0.4s ease;
+	}
+
+	.bento-large .bento-image-wrapper img {
+		filter: grayscale(0%);
 	}
 
 	.bento-item:hover .bento-image-wrapper img {
@@ -421,6 +545,91 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 
 	.bento-item.hover-card:hover::before {
 		opacity: 0.2; /* Allows image to show when hovered */
+	}
+
+	/* Objects Section & Carousel */
+	.objects-section {
+		background: #ffffff;
+		padding: 120px 0;
+		overflow: hidden;
+	}
+
+	.objects-section h2 {
+		color: #000000;
+	}
+
+	.objects-section .section-desc {
+		color: var(--text-muted);
+	}
+
+	.objects-section .section-subtitle {
+		color: var(--text-muted);
+		border-color: var(--border-color);
+	}
+
+	.carousel-container {
+		margin-top: 60px;
+		width: 100%;
+		position: relative;
+	}
+
+	.carousel-track {
+		display: flex;
+		gap: 60px;
+		width: max-content;
+		animation: scroll 40s linear infinite;
+	}
+
+	.carousel-track:hover {
+		animation-play-state: paused;
+	}
+
+	.carousel-item {
+		position: relative;
+		width: 600px;
+		height: 600px;
+		flex-shrink: 0;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.carousel-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		filter: grayscale(100%);
+		transition: transform 0.6s ease, filter 0.6s ease;
+	}
+
+	.item-overlay {
+		position: absolute;
+		bottom: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 10px 20px;
+		background: rgba(0,0,0,0.5);
+		backdrop-filter: blur(4px);
+		border-radius: 20px;
+		color: #fff;
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		white-space: nowrap;
+	}
+
+	.carousel-item:hover img {
+		filter: grayscale(0%);
+		transform: scale(1.05);
+	}
+
+	.carousel-item:hover .item-overlay {
+		opacity: 1;
+	}
+
+	@keyframes scroll {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(calc(-50% - 10px)); }
 	}
 
 	/* Contacts Section */
@@ -554,6 +763,10 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 
 	/* Responsive */
 	@media (max-width: 992px) {
+		.hero-content h1 {
+			font-size: clamp(2rem, 10vw, 4rem);
+		}
+
 		.bento-large {
 			grid-template-columns: 1fr;
 		}
@@ -561,13 +774,70 @@ import { MapPin, Phone, Mail, Map, Tractor, Truck, ShieldCheck, ChevronRight } f
 			min-height: 300px;
 		}
 		h2 {
-			font-size: 2.5rem;
+			font-size: 2.2rem;
+		}
+		.bento-content {
+			padding: 30px;
 		}
 	}
 
 	@media (max-width: 768px) {
+		.hero {
+			padding: 60px 0;
+		}
+
+		.hero-desc {
+			font-size: 1rem;
+			padding: 0 15px;
+		}
+
+		.bento-features {
+			grid-template-columns: 1fr;
+		}
+
+		.bento-item {
+			padding: 30px 20px;
+		}
+
+		.bento-content {
+			padding: 40px 20px;
+		}
+
+		.bento-content h3 {
+			font-size: 1.75rem;
+		}
+
 		.contacts-container {
 			grid-template-columns: 1fr;
 			gap: 50px;
 		}
+
+		.objects-section {
+			padding: 80px 0;
+		}
+
+		.carousel-item {
+			width: 300px;
+			height: 300px;
+		}
+		
+		.carousel-track {
+			gap: 30px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hero-content h1 {
+			font-size: 2.2rem;
+		}
+
+		.bento-content h3 {
+			font-size: 1.5rem;
+		}
+
+		.submit-btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 </style>

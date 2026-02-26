@@ -1,37 +1,67 @@
 ---
-import { Plane } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 ---
 
 <header class="header" id="main-header">
-	<div class="container header-container">
-		<a href="/" class="logo">
-			<Plane size={32} className="logo-icon" />
-			<span>KAZ_BPLA</span>
+	<div class="header-container">
+		<a href="/" class="logo" aria-label="Вернуться на главную">
+			<img src="/logo.png" alt="UAV-KZ Logo" class="logo-image" />
 		</a>
 
 		<nav class="main-nav">
 			<ul class="nav-links">
 				<li><a href="#about">О проекте</a></li>
-				<li><a href="#services">Услуги</a></li>
-				<li><a href="#contacts">Контакты</a></li>
+				<li><a href="#about">Услуги</a></li>
+				<li><a href="#contacts">Связаться</a></li>
 			</ul>
 		</nav>
 
-		<div class="header-actions">
-			<a href="tel:+77001234567" class="header-phone">+7 (700) 123-45-67</a>
-			<a href="#contacts" class="btn-small">Связаться</a>
-		</div>
+		<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню">
+			<Menu size={32} className="icon-menu" />
+			<X size={32} className="icon-close" />
+		</button>
+	</div>
+
+	<div class="mobile-nav" id="mobile-nav">
+		<ul class="mobile-nav-links">
+			<li><a href="#about">О проекте</a></li>
+			<li><a href="#about">Услуги</a></li>
+			<li><a href="#contacts">Связаться</a></li>
+		</ul>
 	</div>
 </header>
 
 <script>
 	const header = document.getElementById('main-header');
+	const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+	const mobileNav = document.getElementById('mobile-nav');
+	const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+	// Scroll handler
 	window.addEventListener('scroll', () => {
-		if (window.scrollY > 50) {
+		if (window.scrollY > 80) {
 			header?.classList.add('scrolled');
 		} else {
 			header?.classList.remove('scrolled');
 		}
+	});
+
+	// Mobile menu toggle
+	const toggleMenu = () => {
+		const isOpen = mobileMenuBtn?.classList.toggle('active');
+		mobileNav?.classList.toggle('active');
+		document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+	};
+
+	mobileMenuBtn?.addEventListener('click', toggleMenu);
+
+	// Close menu on link click
+	mobileLinks.forEach(link => {
+		link.addEventListener('click', () => {
+			mobileMenuBtn?.classList.remove('active');
+			mobileNav?.classList.remove('active');
+			document.body.style.overflow = 'auto';
+		});
 	});
 </script>
 
@@ -41,97 +71,161 @@ import { Plane } from 'lucide-react';
 		top: 0;
 		left: 0;
 		width: 100%;
-		padding: 25px 0;
+		padding: 20px 0;
 		z-index: 1000;
-		transition: all 0.2s ease;
-		background: rgba(18, 18, 18, 0.5);
+		transition: all 0.3s ease;
+		background: transparent;
 	}
 
 	.header.scrolled {
-		background: var(--bg-color);
-		padding: 15px 0;
-		border-bottom: 1px solid var(--border-color);
+		background: transparent;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		padding: 10px 0;
+		border-bottom: 1px solid rgba(255,255,255,0.05);
 	}
 
 	.header-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 1200px;
+		max-width: 1800px;
 		margin: 0 auto;
 		padding: 0 20px;
+		position: relative;
+		z-index: 1001;
 	}
 
 	.logo {
 		display: flex;
 		align-items: center;
-		gap: 15px;
-		font-size: 1.5rem;
-		font-weight: 600;
-		color: #fff;
+		text-decoration: none;
+		transition: transform 0.3s ease;
 	}
 
-	.logo-icon {
-		color: var(--text-color);
+	.logo-image {
+		height: 90px;
+		width: auto;
+		display: block;
+		transition: all 0.3s ease;
 	}
 
 	.nav-links {
 		display: flex;
 		list-style: none;
-		gap: 30px;
+		gap: 36px;
 		margin: 0;
 		padding: 0;
 	}
 
 	.nav-links a {
-		color: var(--text-muted);
+		color: rgba(255, 255, 255, 0.85);
 		font-weight: 500;
 		font-size: 0.95rem;
-		transition: color 0.2s ease;
+		text-decoration: none;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		font-family: 'Russo One', sans-serif;
+		transition: color 0.3s ease;
 	}
 
 	.nav-links a:hover {
-		color: var(--text-color);
+		color: #ffffff;
 	}
 
-	.header-actions {
-		display: flex;
-		align-items: center;
-		gap: 30px;
+	/* Mobile Menu Button */
+	.mobile-menu-btn {
+		display: none;
+		background: transparent;
+		border: none;
+		color: #ffffff;
+		cursor: pointer;
+		padding: 5px;
+		transition: color 0.3s ease;
 	}
 
-	.header-phone {
-		color: var(--text-color);
-		font-weight: 500;
-		font-size: 0.9rem;
+
+
+	.mobile-menu-btn .icon-close {
 		display: none;
 	}
 
-	.btn-small {
-		padding: 10px 25px;
-		background: transparent;
-		color: var(--text-color);
-		border: 1px solid var(--border-color);
-		font-size: 0.85rem;
-		font-weight: 500;
-		transition: all 0.2s ease;
-		border-radius: 4px;
+	.mobile-menu-btn.active .icon-menu {
+		display: none;
 	}
 
-	.btn-small:hover {
-		background: #ffffff;
-		color: #000000;
+	.mobile-menu-btn.active .icon-close {
+		display: block;
+		color: #ffffff !important;
 	}
 
-	@media (min-width: 992px) {
-		.header-phone {
+	/* Mobile Nav Overlay */
+	.mobile-nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: #000000;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.4s ease;
+	}
+
+	.mobile-nav.active {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.mobile-nav-links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		text-align: center;
+	}
+
+	.mobile-nav-links li {
+		margin: 30px 0;
+		transform: translateY(20px);
+		opacity: 0;
+		transition: all 0.4s ease;
+	}
+
+	.mobile-nav.active .mobile-nav-links li {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	.mobile-nav-links a {
+		color: #ffffff;
+		font-size: 2rem;
+		font-family: 'Russo One', sans-serif;
+		text-transform: uppercase;
+		text-decoration: none;
+		letter-spacing: 2px;
+	}
+
+	@media (max-width: 992px) {
+		.main-nav {
+			display: none;
+		}
+
+		.mobile-menu-btn {
 			display: block;
+		}
+
+		.logo-image {
+			height: 70px;
 		}
 	}
 
-	@media (max-width: 768px) {
-		.main-nav {
-			display: none; /* In a real app, you'd add a hamburger menu here */
+	@media (max-width: 480px) {
+		.logo-image {
+			height: 60px;
 		}
 	}
 </style>

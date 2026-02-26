@@ -6,14 +6,44 @@ import Footer from '../components/Footer.astro';
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- SEO Meta Tags -->
+		<title>Противодействие БПЛА | Защита Инфраструктуры в Казахстане</title>
+		<meta name="description" content="Комплексные системы мониторинга, обнаружения и подавления несанкционированных БПЛА. Защита промышленных и государственных объектов в Казахстане." />
+		<meta name="keywords" content="БПЛА, антидрон, защита от дронов, подавление БПЛА, мониторинг дронов, Казахстан, безопасность объектов, обнаружение дронов" />
+		<meta name="author" content="UAV-KZ" />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://uav-kz.kz/" />
+		<meta property="og:title" content="Противодействие БПЛА | Защита Инфраструктуры в Казахстане" />
+		<meta property="og:description" content="Комплексные системы мониторинга, обнаружения и подавления несанкционированных БПЛА." />
+		<meta property="og:image" content="/logo.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://uav-kz.kz/" />
+		<meta property="twitter:title" content="Противодействие БПЛА | Защита Инфраструктуры в Казахстане" />
+		<meta property="twitter:description" content="Комплексные системы мониторинга, обнаружения и подавления несанкционированных БПЛА." />
+		<meta property="twitter:image" content="/logo.png" />
+
+		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="apple-mobile-web-app-title" content="UAV-KZ" />
+		<meta name="theme-color" content="#000000" />
+
 		<meta name="generator" content={Astro.generator} />
-		<title>БПЛА (Дроны) в Казахстане</title>
+		
+		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Russo+One&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<Header />
@@ -43,10 +73,16 @@ import Footer from '../components/Footer.astro';
 		padding: 0;
 		width: 100%;
 		height: 100%;
-		font-family: 'Inter', sans-serif;
+		font-family: 'Roboto', sans-serif;
 		background-color: var(--bg-color);
 		color: var(--text-color);
 		scroll-behavior: smooth;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Russo One', sans-serif;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
 	}
 	a {
 		color: var(--accent-color);
