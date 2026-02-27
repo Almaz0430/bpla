@@ -1,5 +1,4 @@
 ---
-import { Menu, X } from "lucide-react";
 ---
 
 <header class="header" id="main-header">
@@ -19,8 +18,17 @@ import { Menu, X } from "lucide-react";
 				id="mobile-menu-btn"
 				aria-label="Открыть меню"
 			>
-				<Menu size={32} className="icon-menu" />
-				<X size={32} className="icon-close" />
+				<!-- Menu icon -->
+				<svg class="icon-menu" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+					<line x1="3" y1="6" x2="21" y2="6"/>
+					<line x1="3" y1="12" x2="21" y2="12"/>
+					<line x1="3" y1="18" x2="21" y2="18"/>
+				</svg>
+				<!-- Close icon -->
+				<svg class="icon-close" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+					<line x1="18" y1="6" x2="6" y2="18"/>
+					<line x1="6" y1="6" x2="18" y2="18"/>
+				</svg>
 			</button>
 		</div>
 	</div>

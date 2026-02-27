@@ -1,14 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import {
-	MapPin,
-	Map,
-	Tractor,
-	Truck,
-	ShieldCheck,
-	ChevronRight,
-	ChevronsDown,
-} from "lucide-react";
+import { siWhatsapp } from "simple-icons";
 ---
 
 <Layout>
@@ -32,7 +24,7 @@ import {
 				playsinline
 				preload="none"></video>
 			<audio id="bg-audio" loop autoplay>
-				<source src="/hero/sound.mpeg" type="audio/mpeg" />
+				<source src="/hero/sound.mp3" type="audio/mpeg" />
 			</audio>
 			<div class="overlay"></div>
 		</div>
@@ -88,7 +80,10 @@ import {
 		</div>
 
 		<a href="#about" class="scroll-arrow" aria-label="Прокрутить вниз">
-			<ChevronsDown size={40} strokeWidth={1.5} />
+			<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+				<polyline points="7 13 12 18 17 13"/>
+				<polyline points="7 6 12 11 17 6"/>
+			</svg>
 		</a>
 
 		<script>
@@ -344,24 +339,22 @@ import {
 
 				<ul class="contact-list">
 					<li>
-						<MapPin
-							size={32}
-							color="#EA4335"
-							className="contact-icon"
-						/>
+						<svg class="contact-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+							<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+							<circle cx="12" cy="10" r="3"/>
+						</svg>
 						<span>Астана, Казахстан</span>
 					</li>
 					<li>
 						<span class="contact-icon color-icon">
 							<svg
+								role="img"
 								viewBox="0 0 24 24"
 								width="32"
 								height="32"
 								xmlns="http://www.w3.org/2000/svg"
 							>
-								<path
-									d="M12 2C6.48 2 2 6.48 2 12c0 1.74.45 3.37 1.23 4.8L2 22l5.35-1.12C8.74 21.6 10.32 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm4.3 14.5c-.24.68-1.38 1.3-1.93 1.37-.52.06-1.17.1-3.37-.78-2.67-1.07-4.38-3.8-4.52-3.98-.13-.19-1.08-1.44-1.08-2.75 0-1.31.68-1.96.93-2.22.24-.26.54-.33.72-.33.19 0 .38 0 .54.01.17 0 .39-.06.6.45.22.54.72 1.77.78 1.91.06.13.11.29.02.48-.09.19-.13.3-.26.45-.13.15-.28.34-.39.45-.13.14-.26.29-.11.55.15.26.68 1.13 1.46 1.83.99.89 1.83 1.17 2.09 1.29.26.13.41.11.56-.06.15-.17.65-.75.82-1.01.17-.26.35-.22.58-.13.24.09 1.5.71 1.76.84.26.13.43.19.5.3.06.11.06.66-.18 1.34z"
-									fill="#25D366"></path>
+								<path d={siWhatsapp.path} fill="#25D366" />
 							</svg>
 						</span>
 						<a href="https://wa.me/77778555556">WhatsApp</a>
@@ -692,9 +685,17 @@ import {
 		display: none;
 	}
 
+	.dual-images img:first-child {
+		width: 60%;
+		min-width: 60%;
+	}
+
+	.dual-images img:last-child {
+		width: 40%;
+		min-width: 35%;
+	}
+
 	.dual-images img {
-		width: 50%;
-		min-width: 50%;
 		height: 400px;
 		object-fit: cover;
 		display: block;
@@ -1077,7 +1078,9 @@ import {
 			gap: 50px;
 		}
 
-		.dual-images img {
+		.dual-images img,
+		.dual-images img:first-child,
+		.dual-images img:last-child {
 			width: 100%;
 			min-width: 100%;
 			height: 280px;
@@ -1086,6 +1089,11 @@ import {
 		.bento-large {
 			min-height: 280px;
 			padding: 0;
+			margin-left: -20px;
+			margin-right: -20px;
+			width: calc(100% + 40px);
+			border-left: none;
+			border-right: none;
 		}
 
 		/* Show card backgrounds on mobile without hover */
