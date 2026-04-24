@@ -9,8 +9,4 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.kaz-bpla.kz',
   integrations: [react(), sitemap()],
-  redirects: {
-    '/index.html': '/',
-    '/index.php': '/',
-  },
 });
