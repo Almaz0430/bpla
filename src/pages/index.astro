@@ -231,13 +231,13 @@ import { siWhatsapp } from "simple-icons";
 				<div class="bento-item bento-large">
 					<div class="dual-images" id="dual-images-slider">
 						<img
-							src="/photo/image_5.jpeg"
+							src="/photo/image_5.webp"
 							alt="Защита объектов 2"
 							loading="lazy"
 							decoding="async"
 						/>
 						<img
-							src="/photo/image_4.jpeg"
+							src="/photo/image_4.webp"
 							alt="Защита объектов 1"
 							loading="lazy"
 							decoding="async"
@@ -281,7 +281,7 @@ import { siWhatsapp } from "simple-icons";
 					<div class="bento-item hover-card">
 						<div
 							class="card-bg"
-							style="background-image: url('/photo/card_1.jpeg');"
+							style="background-image: url('/photo/card_1.webp');"
 						>
 						</div>
 						<div class="card-front">
@@ -292,7 +292,7 @@ import { siWhatsapp } from "simple-icons";
 					<div class="bento-item hover-card">
 						<div
 							class="card-bg"
-							style="background-image: url('/photo/card_2.png');"
+							style="background-image: url('/photo/card_2.webp');"
 						>
 						</div>
 						<div class="card-front">
@@ -303,7 +303,7 @@ import { siWhatsapp } from "simple-icons";
 					<div class="bento-item hover-card">
 						<div
 							class="card-bg"
-							style="background-image: url('/photo/card_3.png');"
+							style="background-image: url('/photo/card_3.webp');"
 						>
 						</div>
 						<div class="card-front">
@@ -317,7 +317,7 @@ import { siWhatsapp } from "simple-icons";
 					<div class="bento-item hover-card">
 						<div
 							class="card-bg"
-							style="background-image: url('/photo/card_4.jpeg');"
+							style="background-image: url('/photo/card_4.webp');"
 						>
 						</div>
 						<div class="card-front">
@@ -328,6 +328,25 @@ import { siWhatsapp } from "simple-icons";
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SEO Section -->
+	<section class="seo-section visually-hidden">
+		<div class="container container-sm">
+			<div class="seo-content">
+				<h2>Системы защиты от БПЛА в Казахстане</h2>
+				<p>В условиях стремительного развития беспилотных технологий, обеспечение безопасности критически важных объектов становится приоритетной задачей. Наша компания предлагает передовые решения в области противодействия беспилотным летательным аппаратам (БПЛА) на территории Республики Казахстан. Мы специализируемся на внедрении систем радиоэлектронной борьбы (РЭБ), радиолокационного мониторинга и физического подавления несанкционированных дронов.</p>
+				<p>Наши антидрон-комплексы разработаны с учетом современных угроз и способны эффективно обнаруживать, идентифицировать и нейтрализовать беспилотники различных типов в автоматическом режиме 24/7. Мы предлагаем индивидуальный подход к каждому проекту, будь то защита промышленных предприятий, правительственных учреждений, аэропортов, объектов энергетической инфраструктуры или военных баз.</p>
+				<h3>Почему выбирают наши системы противодействия дронам?</h3>
+				<ul>
+					<li><strong>Высокая точность обнаружения:</strong> Использование многоспектральных сенсоров, оптико-электронных систем и радаров позволяет фиксировать БПЛА даже в сложных погодных условиях.</li>
+					<li><strong>Надежное подавление:</strong> Системы радиоэлектронной борьбы (РЭБ) блокируют каналы управления, навигации (GPS, ГЛОНАСС) и передачи видеосигнала дрона, вынуждая его совершить посадку или вернуться на базу.</li>
+					<li><strong>Интеграция и масштабируемость:</strong> Оборудование легко интегрируется в существующие системы безопасности объектов, обеспечивая единый контур защиты.</li>
+					<li><strong>Законность и безопасность:</strong> Все поставляемые комплексы соответствуют законодательству Республики Казахстан и стандартам безопасности.</li>
+				</ul>
+				<p>Инвестируя в системы защиты от БПЛА, вы минимизируете риски шпионажа, террористических актов и несанкционированного вмешательства в работу вашей инфраструктуры. Обеспечьте безопасность своего бизнеса вместе с профессионалами!</p>
 			</div>
 		</div>
 	</section>
@@ -827,6 +846,54 @@ import { siWhatsapp } from "simple-icons";
 	.hover-card:hover .card-front h4,
 	.hover-card:hover .card-front p {
 		color: #ffffff;
+	}
+
+	/* SEO Section */
+	.seo-section.visually-hidden {
+		/* Inherits visually-hidden from Layout.astro */
+		padding: 0;
+		border: none;
+	}
+	.seo-content h2 {
+		font-size: 2.2rem;
+		margin-bottom: 25px;
+		color: var(--text-color);
+	}
+	.seo-content h3 {
+		font-size: 1.5rem;
+		margin-top: 40px;
+		margin-bottom: 20px;
+		color: var(--text-color);
+	}
+	.seo-content p {
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--text-muted);
+		margin-bottom: 20px;
+	}
+	.seo-content ul {
+		list-style-type: none;
+		padding: 0;
+		margin-bottom: 30px;
+	}
+	.seo-content ul li {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: var(--text-muted);
+		margin-bottom: 15px;
+		padding-left: 20px;
+		position: relative;
+	}
+	.seo-content ul li::before {
+		content: "•";
+		color: var(--accent-color);
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-weight: bold;
+	}
+	.seo-content strong {
+		color: var(--text-color);
 	}
 
 	/* Contacts Section */
