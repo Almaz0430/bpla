@@ -215,9 +215,13 @@ import { siWhatsapp } from "simple-icons";
 	<!-- About Section -->
 	<section id="about" class="about-section">
 		<div class="container">
+			<div class="section-header text-center">
+				<span class="section-subtitle">Возможности</span>
+				<h2>Наши решения</h2>
+			</div>
 			<div class="bento-grid">
 				<div class="bento-item bento-large">
-					<div class="dual-images" id="dual-images-slider">
+					<div class="dual-images">
 						<img
 							src="/photo/image_5-720.webp"
 							srcset="/photo/image_5-360.webp 360w, /photo/image_5-720.webp 720w"
@@ -228,49 +232,7 @@ import { siWhatsapp } from "simple-icons";
 							loading="lazy"
 							decoding="async"
 						/>
-						<img
-							src="/photo/image_4-720.webp"
-							srcset="/photo/image_4-360.webp 360w, /photo/image_4-720.webp 720w"
-							sizes="(max-width: 768px) 100vw, 717px"
-							width="720"
-							height="415"
-							alt="Защита объектов 1"
-							loading="lazy"
-							decoding="async"
-						/>
 					</div>
-					<script>
-						(function () {
-							const slider =
-								document.getElementById("dual-images-slider");
-							if (!slider) return;
-							let scrolling = true;
-							setInterval(() => {
-								if (!scrolling) return;
-								const maxScroll =
-									slider.scrollWidth - slider.clientWidth;
-								if (slider.scrollLeft >= maxScroll - 2) {
-									slider.scrollTo({
-										left: 0,
-										behavior: "smooth",
-									});
-								} else {
-									slider.scrollBy({
-										left: slider.clientWidth,
-										behavior: "smooth",
-									});
-								}
-							}, 3000);
-							slider.addEventListener("touchstart", () => {
-								scrolling = false;
-							});
-							slider.addEventListener("touchend", () => {
-								setTimeout(() => {
-									scrolling = true;
-								}, 3000);
-							});
-						})();
-					</script>
 				</div>
 
 				<div class="bento-features">
@@ -354,6 +316,20 @@ import { siWhatsapp } from "simple-icons";
 				<span class="section-subtitle">Контакты</span>
 				<h2>Связаться с нами</h2>
 			</div>
+
+			<div class="contacts-visual">
+				<img
+					src="/photo/image_4-720.webp"
+					srcset="/photo/image_4-360.webp 360w, /photo/image_4-720.webp 720w"
+					sizes="(max-width: 1200px) 100vw, 1200px"
+					width="720"
+					height="415"
+					alt="Наши специалисты"
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+
 			<div class="contacts-grid">
 				<!-- Location -->
 				<div class="contact-card">
@@ -774,7 +750,7 @@ import { siWhatsapp } from "simple-icons";
 
 	.bento-large {
 		padding: 0;
-		background: var(--bg-secondary);
+		background: #000;
 		display: flex;
 		align-items: stretch;
 		min-height: 400px;
@@ -782,33 +758,17 @@ import { siWhatsapp } from "simple-icons";
 
 	.dual-images {
 		display: flex;
-		gap: 0;
+		gap: 1px;
 		width: 100%;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		-webkit-overflow-scrolling: touch;
-		scrollbar-width: none;
-	}
-
-	.dual-images::-webkit-scrollbar {
-		display: none;
-	}
-
-	.dual-images img:first-child {
-		width: 60%;
-		min-width: 60%;
-	}
-
-	.dual-images img:last-child {
-		width: 40%;
-		min-width: 35%;
+		background: #000;
 	}
 
 	.dual-images img {
-		height: 400px;
-		object-fit: cover;
+		height: auto;
+		max-height: 600px;
+		width: 100%;
+		object-fit: contain;
 		display: block;
-		scroll-snap-align: start;
 		flex-shrink: 0;
 	}
 
@@ -864,19 +824,16 @@ import { siWhatsapp } from "simple-icons";
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-size: cover;
+		background-size: contain;
+		background-repeat: no-repeat;
 		background-position: center;
-		opacity: 0;
-		transition:
-			opacity 0.4s ease,
-			transform 0.4s ease;
+		opacity: 1;
+		transition: opacity 0.4s ease;
 		z-index: 1;
-		filter: grayscale(30%) brightness(0.6);
 	}
 
 	.hover-card:hover .card-bg {
-		opacity: 1;
-		transform: scale(1.05);
+		transform: none;
 	}
 
 	.card-front {
@@ -920,18 +877,18 @@ import { siWhatsapp } from "simple-icons";
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: var(--bg-color);
-		z-index: 0;
-		transition: opacity 0.4s ease;
+		background: rgba(0,0,0,0.4);
+		z-index: 2;
 	}
 
 	.bento-item.hover-card:hover::before {
-		opacity: 0.5;
+		opacity: 0.4;
 	}
 
-	.hover-card:hover .card-front h4,
-	.hover-card:hover .card-front p {
+	.hover-card .card-front h4,
+	.hover-card .card-front p {
 		color: #ffffff;
+		text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 	}
 
 	/* SEO Section */
@@ -984,13 +941,30 @@ import { siWhatsapp } from "simple-icons";
 
 	/* Contacts Section */
 	.contacts-section {
-		background: var(--bg-color);
+		background: var(--bg-secondary);
 		padding: 120px 0;
 		border-top: 1px solid var(--border-color);
 	}
 
 	.contacts-header {
-		margin-bottom: 60px;
+		margin-bottom: 40px;
+	}
+
+	.contacts-visual {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto 40px;
+		border: 1px solid var(--border-color);
+		overflow: hidden;
+		background: #000;
+	}
+
+	.contacts-visual img {
+		width: 100%;
+		height: auto;
+		max-height: 500px;
+		display: block;
+		object-fit: contain;
 	}
 
 	.contacts-grid {
@@ -1002,7 +976,7 @@ import { siWhatsapp } from "simple-icons";
 	}
 
 	.contact-card {
-		background: var(--bg-color);
+		background: #111111;
 		padding: 60px 40px;
 		display: flex;
 		flex-direction: column;
@@ -1028,10 +1002,12 @@ import { siWhatsapp } from "simple-icons";
 
 	.contact-card-link:hover {
 		background: var(--bg-secondary);
+		border-color: rgba(255, 255, 255, 0.1);
 	}
 
 	.contact-card-link:hover::before {
-		background: rgba(255, 255, 255, 0.15);
+		background: var(--accent-color);
+		box-shadow: 0 0 20px var(--accent-color);
 	}
 
 	.contact-card-link:hover .contact-card-value {
@@ -1197,6 +1173,20 @@ import { siWhatsapp } from "simple-icons";
 			font-size: 1.75rem;
 		}
 
+		.contacts-visual {
+			margin-left: -20px;
+			margin-right: -20px;
+			width: calc(100% + 40px);
+			max-width: none;
+			border-left: none;
+			border-right: none;
+			margin-bottom: 30px;
+		}
+
+		.contacts-visual img {
+			max-height: 300px;
+		}
+
 		.contacts-grid {
 			grid-template-columns: 1fr;
 		}
@@ -1205,17 +1195,11 @@ import { siWhatsapp } from "simple-icons";
 			padding: 40px 30px;
 		}
 
-		.dual-images img:first-child {
-			object-fit: contain;
-			background: #050a12; /* Цвет под фон картинки */
-		}
-
-		.dual-images img,
-		.dual-images img:first-child,
-		.dual-images img:last-child {
+		.dual-images img {
 			width: 100%;
-			min-width: 100%;
-			height: 280px;
+			height: auto;
+			max-height: 400px;
+			object-fit: contain;
 		}
 
 		.bento-large {
