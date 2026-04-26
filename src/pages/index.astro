@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 import { siWhatsapp } from "simple-icons";
 ---
 
 <Layout>
 	<!-- Hero Section -->
 	<section class="hero">
+		<Header />
 		<div class="video-background">
 			<video
 				id="video-1"
@@ -38,39 +40,22 @@ import { siWhatsapp } from "simple-icons";
 			>
 				<span class="audio-hint-icon">
 					<svg
-						width="28"
-						height="28"
+						width="24"
+						height="24"
 						viewBox="0 0 24 24"
 						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
 					>
-						<path
-							d="M9 11V6a2 2 0 0 1 4 0v5"
-							stroke="white"
-							stroke-width="1.8"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							d="M13 11V8a2 2 0 0 1 4 0v3"
-							stroke="white"
-							stroke-width="1.8"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							d="M17 11a2 2 0 0 1 4 0v3c0 4-3 7-7 7h-2c-2.5 0-4.5-1-6-3l-3-4a2 2 0 0 1 3-2.6L9 14V6a2 2 0 0 0-4 0"
-							stroke="white"
-							stroke-width="1.8"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
-						<path
-							d="M5 6a2 2 0 0 1 4 0"
-							stroke="white"
-							stroke-width="1.8"
-							stroke-linecap="round"
-							stroke-linejoin="round"></path>
+						<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"
+						></polygon>
+						<path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+						<path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
 					</svg>
 				</span>
-				<span class="audio-hint-text">Нажмите для звука</span>
+				<span class="audio-hint-text">Включить звук</span>
 			</button>
 			<p class="hero-desc">
 				Комплексная система по обнаружению, идентификации и
@@ -80,10 +65,13 @@ import { siWhatsapp } from "simple-icons";
 		</div>
 
 		<a href="#about" class="scroll-arrow" aria-label="Прокрутить вниз">
-			<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-				<polyline points="7 13 12 18 17 13"/>
-				<polyline points="7 6 12 11 17 6"/>
-			</svg>
+			<div class="mouse">
+				<div class="wheel"></div>
+			</div>
+			<div class="arrow-container">
+				<span class="chevron"></span>
+				<span class="chevron"></span>
+			</div>
 		</a>
 
 		<script>
@@ -491,40 +479,57 @@ import { siWhatsapp } from "simple-icons";
 		cursor: pointer;
 		color: #ffffff;
 		font-family: inherit;
-		font-size: 0.85rem;
-		letter-spacing: 0.5px;
-		transition:
-			opacity 0.4s ease,
-			transform 0.2s ease;
+		transition: all 0.3s ease;
 		opacity: 0;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 	}
 
 	.audio-hint.visible {
 		display: flex;
-		animation: hintAppear 0.6s ease forwards;
+		animation: hintAppear 0.8s ease forwards;
 	}
 
 	.audio-hint.hidden {
 		opacity: 0 !important;
 		pointer-events: none;
-		transition: opacity 0.4s ease;
 	}
 
 	.audio-hint:hover {
-		transform: scale(1.04);
+		transform: scale(1.1);
+		color: #ffffff;
 	}
 
 	.audio-hint-icon {
-		font-size: 1.8rem;
-		animation: tapWiggle 1.2s ease-in-out infinite;
-		display: block;
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		animation: pulseCustom 2s infinite;
 	}
 
 	.audio-hint-text {
-		font-size: 0.8rem;
+		font-size: 0.75rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 1px;
 		color: rgba(255, 255, 255, 0.8);
 		white-space: nowrap;
+	}
+
+	@keyframes pulseCustom {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.1);
+			opacity: 0.7;
+		}
+		100% {
+			transform: scale(1);
+			opacity: 1;
+		}
 	}
 
 	@keyframes hintAppear {
@@ -559,17 +564,90 @@ import { siWhatsapp } from "simple-icons";
 
 	.scroll-arrow {
 		position: absolute;
-		bottom: 40px;
+		bottom: 30px;
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 3;
-		color: rgba(255, 255, 255, 0.7);
-		transition: color 0.2s ease;
-		display: block;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+		text-decoration: none;
+		transition: opacity 0.3s ease;
 	}
 
 	.scroll-arrow:hover {
-		color: #ffffff;
+		opacity: 0.8;
+	}
+
+	.mouse {
+		width: 24px;
+		height: 38px;
+		border: 2px solid rgba(255, 255, 255, 0.4);
+		border-radius: 12px;
+		position: relative;
+	}
+
+	.wheel {
+		width: 3px;
+		height: 6px;
+		background: #ffffff;
+		border-radius: 2px;
+		position: absolute;
+		top: 6px;
+		left: 50%;
+		transform: translateX(-50%);
+		animation: scrollWheel 1.8s infinite;
+	}
+
+	.arrow-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: -2px;
+	}
+
+	.chevron {
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-right: 2px solid rgba(255, 255, 255, 0.5);
+		border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+		transform: rotate(45deg);
+		margin: -4px 0;
+		animation: chevronAnim 1.8s infinite;
+	}
+
+	.chevron:nth-child(2) {
+		animation-delay: 0.2s;
+	}
+
+	@keyframes scrollWheel {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translateX(-50%) translateY(15px);
+		}
+	}
+
+	@keyframes chevronAnim {
+		0% {
+			opacity: 0;
+			transform: rotate(45deg) translate(-5px, -5px);
+		}
+		40% {
+			opacity: 1;
+		}
+		80% {
+			opacity: 0;
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+		100% {
+			opacity: 0;
+		}
 	}
 
 	/* Sections General */
@@ -1052,9 +1130,8 @@ import { siWhatsapp } from "simple-icons";
 			transform: none;
 			display: flex;
 			justify-content: center;
-			padding: 16px 0 24px;
+			padding: 20px 0 30px;
 			background: var(--bg-color);
-			color: rgba(255, 255, 255, 0.6);
 		}
 
 		.bento-features {

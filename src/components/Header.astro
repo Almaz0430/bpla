@@ -48,15 +48,6 @@
 	const mobileNav = document.getElementById("mobile-nav");
 	const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
 
-	// Scroll handler
-	window.addEventListener("scroll", () => {
-		if (window.scrollY > 80) {
-			header?.classList.add("scrolled");
-		} else {
-			header?.classList.remove("scrolled");
-		}
-	});
-
 	// Mobile menu is intentionally disabled to act as a "scam" button
 	// Clicking it does nothing here, but triggers document click to start audio
 	mobileMenuBtn?.addEventListener("click", (e) => {
@@ -66,7 +57,7 @@
 
 <style>
 	.header {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -74,13 +65,6 @@
 		z-index: 1000;
 		transition: all 0.3s ease;
 		background: transparent;
-	}
-
-	.header.scrolled {
-		background: transparent;
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
-		padding: 10px 0;
 	}
 
 	.header-container {
