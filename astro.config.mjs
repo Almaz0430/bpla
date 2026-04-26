@@ -8,5 +8,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.kaz-bpla.kz',
-  integrations: [react(), sitemap()]
+  build: {
+    inlineStylesheets: 'always',
+  },
+  integrations: [react(), sitemap()],
 });
